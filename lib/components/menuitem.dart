@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,21 +6,21 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constants/custom_colors.dart';
 
 class MenuItem extends StatelessWidget {
-  String itemName;
-  String itemDescription;
-  double price;
+  DocumentSnapshot document;
 
   MenuItem({
     super.key,
-    required this.itemName,
-    required this.itemDescription,
-    required this.price,
+    required this.document,
   });
+
+  late String itemName = document['name'];
+  late String itemDescription = document['description'];
+  late double price = document['price'];
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
       child: Container(
           width: 1000,
           height: 50,
@@ -79,7 +80,7 @@ class MenuItem extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: IconButton(
                         onPressed: () {},
-                        icon: const Icon(CupertinoIcons.add_circled),
+                        icon: const Icon(Icons.add_shopping_cart),
                       ),
                     ),
                   ),

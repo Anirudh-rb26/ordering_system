@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,9 @@ class homepage extends StatelessWidget {
         backgroundColor: CustomColors().backgroundColor,
         elevation: 0,
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
+        ],
         title: Text(
           "Restaurant ABC | Menu",
           style: TextStyle(
@@ -30,46 +34,26 @@ class homepage extends StatelessWidget {
           ),
         ),
       ),
-      body: IntrinsicHeight(
-        child: Row(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  for (var menuItemCount = 100.0;
-                      menuItemCount >= 1;
-                      menuItemCount--) ...[
-                    MenuItem(
-                      itemName: "Menu Item: $menuItemCount",
-                      itemDescription: "Something about the dish....",
-                      price: menuItemCount,
-                    ),
-                  ]
-                ],
-              ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('menuItems').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Error: ${snapshot.error}"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) => MenuItem(
+              document: snapshot.data!.docs[index],
             ),
-            const CustomDivider(),
-            Container(
-              height: 700,
-              width: 490,
-              decoration: BoxDecoration(color: CustomColors().buttonColor),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    for (var itemCount = 100.0;
-                        itemCount >= 1;
-                        itemCount--) ...[
-                      CartItem(
-                        itemName: "Item Ordered: $itemCount",
-                        price: itemCount,
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
       bottomNavigationBar: FloatingCheckoutbar(),
     );
