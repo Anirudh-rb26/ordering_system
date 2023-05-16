@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1010467027551",
+    "project_id": "resto-task",
+    "storage_bucket": "resto-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010467027551:android:5c98ce4c3a6a13279e79ea",
+        "android_client_info": {
+          "package_name": "com.example.ordering_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010467027551-1iff8fadfrklm2vu6c72qjmiva2ognmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkQvQfA8YQDXY8n7zMFU6EEWDMgaa5KWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1010467027551-1iff8fadfrklm2vu6c72qjmiva2ognmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
