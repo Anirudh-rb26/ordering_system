@@ -6,6 +6,7 @@ import 'package:ordering_system/constants/custom_colors.dart';
 
 import '../components/cartitem.dart';
 import '../components/checkout_bar.dart';
+import '../components/custom_divider.dart';
 import '../components/menuitem.dart';
 
 class homepage extends StatelessWidget {
@@ -47,13 +48,7 @@ class homepage extends StatelessWidget {
                 ],
               ),
             ),
-            VerticalDivider(
-              width: 20,
-              thickness: 1,
-              indent: 20,
-              endIndent: 0,
-              color: CustomColors().buttonColor,
-            ),
+            const CustomDivider(),
             Container(
               height: 700,
               width: 490,
