@@ -28,8 +28,14 @@ class HomePage extends StatelessWidget {
           IconButton(
             onPressed: () {
               if (cartController.items.isEmpty) {
-                Get.snackbar("Cart is empty!",
-                    "Add items to your cart and then try again");
+                Get.snackbar(
+                  "Cart is empty!",
+                  "Add items to your cart and then try again",
+                  snackPosition: SnackPosition.BOTTOM,
+                  duration: const Duration(seconds: 1),
+                  backgroundColor:
+                      CustomColors().highlightColor1.withOpacity(0.4),
+                );
               } else {
                 Get.to(() => const CartScreen());
               }
