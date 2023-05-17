@@ -21,11 +21,20 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return android;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for android - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -50,33 +59,5 @@ class DefaultFirebaseOptions {
     projectId: 'resto-task',
     authDomain: 'resto-task.firebaseapp.com',
     storageBucket: 'resto-task.appspot.com',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCkQvQfA8YQDXY8n7zMFU6EEWDMgaa5KWk',
-    appId: '1:1010467027551:android:5c98ce4c3a6a13279e79ea',
-    messagingSenderId: '1010467027551',
-    projectId: 'resto-task',
-    storageBucket: 'resto-task.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCYaFBsXuF8klnvwE8z3x_jn-JZOQH2IDk',
-    appId: '1:1010467027551:ios:17c4bd2d8a3de60e9e79ea',
-    messagingSenderId: '1010467027551',
-    projectId: 'resto-task',
-    storageBucket: 'resto-task.appspot.com',
-    iosClientId: '1010467027551-81gfvd9n8bu7rd06tfemvmhcp182c4kq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.orderingSystem',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCYaFBsXuF8klnvwE8z3x_jn-JZOQH2IDk',
-    appId: '1:1010467027551:ios:17c4bd2d8a3de60e9e79ea',
-    messagingSenderId: '1010467027551',
-    projectId: 'resto-task',
-    storageBucket: 'resto-task.appspot.com',
-    iosClientId: '1010467027551-81gfvd9n8bu7rd06tfemvmhcp182c4kq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.orderingSystem',
   );
 }

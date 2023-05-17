@@ -1,93 +1,85 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:ordering_system/controllers/cart_controller.dart';
+import 'package:ordering_system/controllers/product_controller.dart';
 import '../constants/custom_colors.dart';
 
-class MenuItem extends StatelessWidget {
-  DocumentSnapshot document;
-
-  MenuItem({
-    super.key,
-    required this.document,
-  });
-
-  late String itemName = document['name'];
-  late String itemDescription = document['description'];
-  late double price = document['price'];
+class MenuItemFeilds extends StatelessWidget {
+  final productController = Get.put(ProductController());
+  MenuItemFeilds({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-      child: Container(
-          width: 1000,
+    return Obx(
+      () => Flexible(
+        child: ListView.builder(
+          itemCount: productController.allitems.length,
+          itemBuilder: (BuildContext context, int index) {
+            return MenuItemCards(index: index);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class MenuItemCards extends StatelessWidget {
+  final int index;
+  final cartController = Get.put(CartController());
+  final ProductController productController = Get.find();
+  MenuItemCards({super.key, required this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: Container(
           height: 50,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
             color: CustomColors().buttonColor,
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        itemName,
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                          fontSize: 16,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      productController.allitems[index].name,
+                      style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: CustomColors().buttonTextColor,
-                        ),
+                          fontFamily: GoogleFonts.playfairDisplay().fontFamily),
+                    ),
+                    Text(
+                      productController.allitems[index].description,
+                      style: TextStyle(
+                        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                       ),
-                      Text(
-                        itemDescription,
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                          fontSize: 14,
-                          color: CustomColors().buttonTextColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "₹$price",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: CustomColors().buttonTextColor,
-                        ),
-                      ),
+                Row(
+                  children: [
+                    Text('₹${productController.allitems[index].price}'),
+                    IconButton(
+                      onPressed: () {
+                        cartController
+                            .addToCart(productController.allitems[index]);
+                      },
+                      icon: const Icon(Icons.add_circle),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add_shopping_cart),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          )),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ordering_system/firebase_options.dart';
 import 'package:ordering_system/pages/homepage.dart';
@@ -9,7 +10,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const GetMaterialApp(
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,8 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: GoogleFonts.comfortaa().fontFamily,
       ),
-      debugShowCheckedModeBanner: false,
-      home: const homepage(),
+      home: HomePage(),
     );
   }
 }
