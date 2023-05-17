@@ -17,8 +17,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
-      // extendBody: true,
       backgroundColor: CustomColors().backgroundColor,
       appBar: AppBar(
         backgroundColor: CustomColors().backgroundColor,

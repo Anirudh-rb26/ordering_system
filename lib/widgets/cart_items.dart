@@ -1,6 +1,8 @@
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ordering_system/constants/custom_colors.dart';
 import 'package:ordering_system/controllers/cart_controller.dart';
 import 'package:ordering_system/models/product_model.dart';
 
@@ -47,33 +49,54 @@ class CartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            menuItem.name,
-            style: TextStyle(
-              fontFamily: GoogleFonts.neucha().fontFamily,
+      child: Container(
+        height: 30,
+        decoration: DottedDecoration(
+          shape: Shape.line,
+          linePosition: LinePosition.bottom,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              menuItem.name,
+              style: TextStyle(
+                fontFamily: GoogleFonts.neucha().fontFamily,
+                color: CustomColors().headlineColor,
+                fontSize: 16,
+              ),
             ),
-          ),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  controller.addToCart(menuItem);
-                },
-                icon: const Icon(Icons.add_circle),
-              ),
-              Text('$quantitiy'),
-              IconButton(
-                onPressed: () {
-                  controller.removeItem(menuItem);
-                },
-                icon: const Icon(Icons.remove_circle),
-              ),
-            ],
-          ),
-        ],
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    controller.addToCart(menuItem);
+                  },
+                  icon: Icon(
+                    Icons.add_circle,
+                    color: CustomColors().headlineColor,
+                  ),
+                ),
+                Text(
+                  '$quantitiy',
+                  style: TextStyle(
+                    color: CustomColors().headlineColor,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    controller.removeItem(menuItem);
+                  },
+                  icon: Icon(
+                    Icons.remove_circle,
+                    color: CustomColors().headlineColor,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

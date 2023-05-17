@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ordering_system/components/checkout_bar.dart';
+import 'package:ordering_system/constants/custom_colors.dart';
 import 'package:ordering_system/widgets/cart_items.dart';
 
 class CartScreen extends StatelessWidget {
@@ -8,8 +9,12 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors().backgroundColor,
       appBar: AppBar(
-        title: const Text("Your cart"),
+        backgroundColor: CustomColors().backgroundColor,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text("Your Cart"),
       ),
       body: Column(
         children: [
