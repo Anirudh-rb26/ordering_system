@@ -4,9 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ordering_system/constants/custom_colors.dart';
 import 'package:ordering_system/controllers/cart_controller.dart';
-import 'package:ordering_system/controllers/product_controller.dart';
-
-import '../components/checkout_bar.dart';
 import '../components/menuitem.dart';
 import 'cart_screen.dart';
 
