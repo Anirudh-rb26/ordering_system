@@ -2,12 +2,15 @@ import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ordering_system/components/checkout_bar.dart';
 import 'package:ordering_system/constants/custom_colors.dart';
 import 'package:ordering_system/controllers/cart_controller.dart';
+import 'package:ordering_system/controllers/offer_controller.dart';
 import 'package:ordering_system/models/product_model.dart';
 
 class CartProducts extends StatelessWidget {
   final CartController controller = Get.find();
+  final offerController = Get.put(OfferSelectionController());
   CartProducts({super.key});
 
   @override
@@ -72,6 +75,17 @@ class CartCard extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     controller.addToCart(menuItem);
+                    offerController.resetOfferValues();
+                    offerController.resetDiscountedPrice();
+                    Get.snackbar(
+                      "Discount Removed",
+                      "Discount has been removed, Press Apply Coupons to check for new coupons.",
+                      duration: const Duration(milliseconds: 800),
+                      backgroundColor:
+                          CustomColors().highlightColor1.withOpacity(0.4),
+                      isDismissible: true,
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
                   },
                   icon: Icon(
                     Icons.add_circle,
@@ -87,6 +101,17 @@ class CartCard extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     controller.removeItem(menuItem);
+                    offerController.resetOfferValues();
+                    offerController.resetDiscountedPrice();
+                    Get.snackbar(
+                      "Discount Removed",
+                      "Discount has been removed, Press Apply Coupons to check for new coupons.",
+                      duration: const Duration(milliseconds: 800),
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor:
+                          CustomColors().highlightColor1.withOpacity(0.4),
+                      isDismissible: true,
+                    );
                   },
                   icon: Icon(
                     Icons.remove_circle,

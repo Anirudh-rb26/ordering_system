@@ -18,8 +18,9 @@ class CartController extends GetxController {
       "Dish Added",
       "${orderedItem.name} is added to cart",
       snackPosition: SnackPosition.BOTTOM,
-      duration: const Duration(milliseconds: 870),
+      duration: const Duration(milliseconds: 700),
       backgroundColor: CustomColors().highlightColor1.withOpacity(0.4),
+      isDismissible: true,
     );
   }
 
@@ -35,6 +36,7 @@ class CartController extends GetxController {
         "Add items to your cart and try again",
         duration: const Duration(seconds: 1),
         backgroundColor: CustomColors().highlightColor1.withOpacity(0.4),
+        isDismissible: true,
       );
     } else {
       _items[orderedItem] -= 1;

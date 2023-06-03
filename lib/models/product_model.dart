@@ -20,20 +20,4 @@ class MenuItem {
 
     return item;
   }
-
-  // static const List<MenuItem> items = [
-  //   MenuItem(name: 'name', description: 'description', price: 10000),
-  //   MenuItem(name: 'thing', description: 'description', price: 23),
-  //   MenuItem(name: 'Some', description: 'description', price: 32),
-  // ];
-
-  // static MenuItem fromSnapshot(DocumentSnapshot snap) {
-  //   MenuItem menuItem = MenuItem(
-  //     name: snap['name'],
-  //     description: snap['description'],
-  //     price: snap['price'],
-  //   );
-
-  //   return menuItem;
-  // }
 }
